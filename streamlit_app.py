@@ -10,7 +10,6 @@ import plotly.express as px
 # 1. Config & Page Setup
 st.set_page_config(
     page_title="Buy/Bye LQ45 Dashboard",
-    page_icon="💸",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -225,10 +224,10 @@ st.markdown("<hr style='border-color: rgba(255,255,255,0.05); margin-top: 10px; 
 
 # Tabs
 tab_overview, tab_analysis, tab_screener, tab_portfolio = st.tabs([
-    "📂 Market Overview", 
-    "📈 Multi-Pillar Analysis", 
-    "🔍 Screener", 
-    "💼 Portfolio Planner"
+    "Market Overview", 
+    "Multi-Pillar Analysis", 
+    "Screener", 
+    "Portfolio Planner"
 ])
 
 # Loading Base Data Frame
@@ -267,7 +266,7 @@ with tab_overview:
         </div>
         """, unsafe_allow_html=True)
         
-    st.markdown("### 🔝 LQ45 Heavyweight Snapshot")
+    st.markdown("### LQ45 Heavyweight Snapshot")
     
     disp_df = df_stocks.copy()
     disp_df["Price"] = disp_df["Price"].map(lambda x: f"Rp {x:,}")
@@ -278,7 +277,7 @@ with tab_overview:
 with tab_analysis:
     col_sel, col_empty = st.columns([1, 3])
     with col_sel:
-        selected_stock = st.selectbox("🎯 Pilih Emiten LQ45:", load_lq45_list(), index=0)
+        selected_stock = st.selectbox("Pilih Emiten LQ45:", load_lq45_list(), index=0)
         
     row_data = df_stocks[df_stocks["Ticker"] == selected_stock].iloc[0]
     
@@ -366,7 +365,7 @@ with tab_analysis:
         """, unsafe_allow_html=True)
         
         # Real-time CNN Indonesia Ekonomi News View
-        st.markdown("<p style='color:#ef4444; font-size:12px; margin-bottom: 5px; font-weight:bold; text-transform:uppercase;'>📰 CNN Indonesia Ekonomi & Bisnis News Hub</p>", unsafe_allow_html=True)
+        st.markdown("<p style='color:#ef4444; font-size:12px; margin-bottom: 5px; font-weight:bold; text-transform:uppercase;'>CNN Indonesia Ekonomi & Bisnis News Hub</p>", unsafe_allow_html=True)
         
         # Render dynamic user stream
         chat_container = st.container(height=350)
@@ -389,7 +388,7 @@ with tab_analysis:
 
 # ================= TAB 3: SCREENER =================
 with tab_screener:
-    st.markdown("### 🔍 Multi-Factor Technical & Fundamental Screener")
+    st.markdown("### Multi-Factor Technical & Fundamental Screener")
     st.markdown("<p style='color:#64748b;'>Saring seluruh semesta saham LQ45 secara real-time berdasarkan parameter kustom Anda.</p>", unsafe_allow_html=True)
     
     col_sc1, col_sc2, col_sc3 = st.columns(3)
@@ -418,22 +417,22 @@ with tab_screener:
 
 # ================= TAB 4: PORTFOLIO =================
 with tab_portfolio:
-    st.markdown("### 💼 Markowitz Portfolio Efficient Frontier Optimizer & Lot Calculator")
+    st.markdown("### Markowitz Portfolio Efficient Frontier Optimizer & Lot Calculator")
     st.markdown("<p style='color:#64748b;'>Optimalkan instrumen Bluechip Anda menggunakan Modern Portfolio Theory (MPT) Monte Carlo Simulation.</p>", unsafe_allow_html=True)
     
     col_p1, col_p2 = st.columns([1, 2])
     
     with col_p1:
         st.markdown("<div class='glass-panel'>", unsafe_allow_html=True)
-        budget = st.number_input("💵 Investasi Kapital Budget Anda (IDR):", min_value=1000000, max_value=1000000000, value=10000000, step=1000000)
-        risk_profile = st.selectbox("⚡ Profil Risiko Anda:", ["Low", "Medium", "High"], index=1)
+        budget = st.number_input("Investasi Kapital Budget (IDR):", min_value=1000000, max_value=1000000000, value=10000000, step=1000000)
+        risk_profile = st.selectbox("Profil Risiko:", ["Low", "Medium", "High"], index=1)
         
         selected_tickers = st.multiselect(
-            "📈 Pilih Saham untuk Portofolio:",
+            "Pilih Saham untuk Portofolio:",
             load_lq45_list(),
             default=["BBCA", "BBRI", "BMRI", "BBNI", "TLKM"]
         )
-        submit_optimizer = st.button("🚀 JALANKAN MARKOWITZ OPTIMIZER")
+        submit_optimizer = st.button("Jalankan Markowitz Optimizer")
         st.markdown("</div>", unsafe_allow_html=True)
         
     with col_p2:
@@ -533,7 +532,7 @@ with tab_portfolio:
                 st.plotly_chart(fig_ef, use_container_width=True)
                 
                 # Allocation Metrics
-                st.markdown("### 📋 Hasil Alokasi Optimasi & Hitung Lot")
+                st.markdown("### Hasil Alokasi Optimasi & Hitung Lot")
                 col_met1, col_met2, col_met3 = st.columns(3)
                 with col_met1:
                     st.markdown(f"""
